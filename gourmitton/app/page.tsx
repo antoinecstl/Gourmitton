@@ -90,6 +90,19 @@ export default async function Home() {
         cook_time: r.cook_time,
         total_time: r.prep_time + r.cook_time,
         when_to_eat: r.when_to_eat,
+        calories: r.calories,
+        category: r.category,
+        cost: r.cost,
+        created_at: r.created_at,
+        updated_at: r.updated_at,
+        ingredients: r.ingredients,
+        instructions: r.instructions,
+        likes: r.likes,
+        created_by: r.created_by,
+        servings: r.servings,
+        disclaimer: r.disclaimer,
+        published: r.published,
+
       }))} categories={categories} />
       
       {/* Newsletter Section with improved visuals */}

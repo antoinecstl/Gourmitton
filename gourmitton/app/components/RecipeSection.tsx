@@ -5,14 +5,23 @@ import RecipeCard from './RecipeCard';
 import CategoryFilter from './CategoryFilter';
 
 interface Recipe {
-  id: number;
-  image_url: string;
+  id: string;
+  image_url?: string;
   name: string;
   description: string;
   prep_time: number;
   cook_time: number;
   total_time: number;
   when_to_eat: string;
+  calories: number;
+  category: string;
+  cost: number;
+  created_at: string;
+  created_by: string;
+  disclaimer: string;
+  instructions: string;
+  published: boolean;
+  servings: number;
 }
 
 interface RecipeSectionProps {

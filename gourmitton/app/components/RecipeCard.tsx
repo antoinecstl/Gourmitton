@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface Recipe {
-  id: number;
+  id: string;
   image_url?: string;
   name: string;
   description: string;
@@ -9,6 +9,15 @@ interface Recipe {
   cook_time: number;
   total_time: number;
   when_to_eat: string;
+  calories: number;
+  category: string;
+  cost: number;
+  created_at: string;
+  created_by: string;
+  disclaimer: string;
+  instructions: string;
+  published: boolean;
+  servings: number;
 }
 
 interface RecipeCardProps {

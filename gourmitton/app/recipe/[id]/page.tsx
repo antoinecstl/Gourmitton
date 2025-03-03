@@ -42,13 +42,13 @@ export default async function RecipePage({ params }: RecipePageProps) {
         <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full text-center">
           <h1 className="text-2xl font-bold text-amber-800 mb-4">Recette non trouvée</h1>
           <p className="text-gray-600 mb-6">
-            Nous n'avons pas pu trouver la recette que vous cherchez.
+            Nous n&apos;avons pas pu trouver la recette que vous cherchez.
           </p>
           <Link 
             href="/"
             className="inline-block px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all"
           >
-            Retour à l'accueil
+            Retour à l&aposaccueil
           </Link>
         </div>
       </div>
@@ -179,11 +179,15 @@ export default async function RecipePage({ params }: RecipePageProps) {
             </h2>
             
             <div className="space-y-8">
-              {recipe.instructions && (
-                <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-amber-500">
-                  <p className="text-gray-700">{recipe.instructions}</p>
-                </div>
-              )}
+                {recipe.instructions && (
+                  <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-amber-500">
+                  {recipe.instructions.split('\n').map((instruction, index) => (
+                    <p key={index} className="text-gray-700 mb-4">
+                    {instruction}
+                    </p>
+                  ))}
+                  </div>
+                )}
               
               {!recipe.instructions && (
                 <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-amber-500">
