@@ -18,7 +18,12 @@ export interface User {
 
 // Get all recipes
 export async function getRecipes(): Promise<Recipe[]> {
-  const response = await fetch(`${API_BASE_URL}/recipes`);
+  const response = await fetch(`${API_BASE_URL}/recipes`, {
+    method: 'GET',
+    headers: {
+      'Accept': `application/json`,
+    },
+  });
   if (!response.ok) {
     throw new Error('Failed to fetch recipes');
   }
