@@ -27,7 +27,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center bg-gradient-to-br from-amber-600 to-amber-800">
+      <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-amber-600 to-amber-800">
         <div className="absolute inset-0 overflow-hidden">
           <img 
             src="/meal.jpg" 
@@ -53,25 +53,25 @@ export default async function Home() {
             Des plats savoureux et faciles à préparer pour toutes les occasions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-amber-800 hover:bg-amber-100 font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
-              Explorer nos recettes
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white/20 font-bold py-4 px-8 rounded-full transition-all">
-              Recette Tendance
-            </button>
+            <a href="#all-recipes">
+              <button className="bg-white text-amber-800 hover:bg-amber-100 font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                Explorer nos recettes
+              </button>
+            </a>
+            <a href="#trending-recipe">
+              <button className="border-2 border-white text-white hover:bg-white/20 font-bold py-4 px-8 rounded-full transition-all">
+                Recette Tendance
+              </button>
+            </a>
           </div>
         </div>
         
-        {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 text-amber-50">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0Z" fill="currentColor"></path>
-          </svg>
-        </div>
+        {/* Gradient divider */}
+        <div className="absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-amber-50 to-transparent"></div>
       </section>
       
       {/* Recipe of the Day */}
-      <section className="bg-amber-50 py-12">
+      <section id="trending-recipe" className="bg-amber-50 py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-amber-800 mb-8 text-center flex items-center justify-center gap-2">
             <span className="text-amber-600">✨</span> La Recette Tendance <span className="text-amber-600">✨</span>
@@ -81,31 +81,33 @@ export default async function Home() {
       </section>
       
       {/* Main Recipes Section with Filters - Now using the RecipeSection component */}
-      <RecipeSection recipes={recipes.map((r: any) => ({
-        id: r.id,
-        image_url: r.image_url,
-        name: r.name,
-        description: r.description,
-        prep_time: r.prep_time,
-        cook_time: r.cook_time,
-        total_time: r.prep_time + r.cook_time,
-        when_to_eat: r.when_to_eat,
-        calories: r.calories,
-        category: r.category,
-        cost: r.cost,
-        created_at: r.created_at,
-        updated_at: r.updated_at,
-        ingredients: r.ingredients,
-        instructions: r.instructions,
-        likes: r.likes,
-        created_by: r.created_by,
-        servings: r.servings,
-        disclaimer: r.disclaimer,
-        published: r.published,
-
-      }))} categories={categories} />
+      <section id="all-recipes">
+        <RecipeSection recipes={recipes.map((r: any) => ({
+          id: r.id,
+          image_url: r.image_url,
+          name: r.name,
+          description: r.description,
+          prep_time: r.prep_time,
+          cook_time: r.cook_time,
+          total_time: r.prep_time + r.cook_time,
+          when_to_eat: r.when_to_eat,
+          calories: r.calories,
+          category: r.category,
+          cost: r.cost,
+          created_at: r.created_at,
+          updated_at: r.updated_at,
+          ingredients: r.ingredients,
+          instructions: r.instructions,
+          likes: r.likes,
+          created_by: r.created_by,
+          servings: r.servings,
+          disclaimer: r.disclaimer,
+          published: r.published,
+        }))} categories={categories} />
+      </section>
       
       {/* Newsletter Section with improved visuals */}
+      
       <section className="bg-amber-600 py-20 relative overflow-hidden">
         <div className="container mx-auto px-4 max-w-3xl text-center relative z-10">
           <span className="inline-block text-3xl mb-4">🍳</span>
