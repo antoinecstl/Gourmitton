@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 // Définition du type de la recette
 interface Recipe {
@@ -18,9 +19,9 @@ interface Recipe {
 
 // Spécifier les types des paramètres
 interface RecipePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function RecipePage({ params }: RecipePageProps) {
@@ -48,7 +49,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
             href="/"
             className="inline-block px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all"
           >
-            Retour à l&aposaccueil
+            Retour à l&apos;accueil
           </Link>
         </div>
       </div>
@@ -63,10 +64,13 @@ export default async function RecipePage({ params }: RecipePageProps) {
       {/* En-tête avec image de couverture */}
       <div className="relative h-[40vh] md:h-[50vh] bg-amber-800">
         {recipe.image_url ? (
-          <img 
+          <Image 
             src={recipe.image_url} 
             alt={recipe.name} 
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
+            fill
+            unoptimized
+            style={{ objectFit: 'cover' }}
+            className="absolute inset-0 w-full h-full opacity-80"
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-amber-600 to-amber-800"></div>
@@ -107,7 +111,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
               
               <div className="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-amber-300">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
                 </svg>
                 <span>Cuisson: {recipe.cook_time} min</span>
               </div>
