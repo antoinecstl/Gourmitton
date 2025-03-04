@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import LikeButton from "@/app/components/LikeButton";
 
 import RecipeCard from "@/app/components/RecipeCard";
 
@@ -115,7 +116,11 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 {recipe.when_to_eat}
               </span>
             )}
-            <h1 className="text-3xl md:text-5xl font-bold mb-2">{recipe.name}</h1>
+            <div className="flex items-center gap-4 mb-2">
+              <h1 className="text-3xl md:text-5xl font-bold">{recipe.name}</h1>
+              <LikeButton />
+              <span className="text-md text-amber-200">12</span>
+            </div>
             <p className="text-lg text-amber-100 max-w-2xl mb-4">{recipe.description}</p>
             
             <div className="flex flex-wrap gap-6 text-sm mt-6">
