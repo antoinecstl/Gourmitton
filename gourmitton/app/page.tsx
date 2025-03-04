@@ -32,7 +32,7 @@ export default async function Home() {
   });
   const recipes: Recipe[] = await res.json();
 
-  // Recette du jour (choisir une recette au hasard ou avec un critère spécifique)
+  // Most liked Recipe (TODO)
   const TendanceRecipe = recipes.map((r: Recipe) => ({
     id: r.id,
     image_url: r.image_url,
@@ -72,7 +72,7 @@ export default async function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-amber-800/70"></div>
         </div>
         
-        {/* Added header with title and login button */}
+        {/*  header with title and login button */}
         <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
           <h1 className="text-3xl font-bold text-amber-200 drop-shadow-lg">Gourmitton</h1>
           <button className="bg-white/10 hover:bg-white/30 text-white px-4 py-2 rounded-xl backdrop-blur-xs border border-white/20 transition-all">
