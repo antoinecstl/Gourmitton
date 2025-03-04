@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 
 interface RecipeProps {
@@ -54,7 +52,7 @@ export default function MostLikedRecipe({ recipe }: RecipeProps) {
             <span className="text-sm text-gray-600">Cuisson: {recipe.cook_time} min</span>
           </div>
         </div>
-        <Link href={`/recipe/${recipe.id}`} className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full mt-auto self-start transition-colors font-medium">
+        <Link href={`/recettes/${recipe.id}`} className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full mt-auto self-start transition-colors font-medium">
           Voir la recette
         </Link>
       </div>
