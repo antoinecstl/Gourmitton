@@ -74,7 +74,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
         </div>
         
         <Link 
-          href={`/recipe/${recipe.id}`}
+          href={`/recettes/${recipe.id}`}
           className="w-full text-center py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all flex items-center justify-center gap-2 group-hover:shadow-md"
         >
           <span>Voir la recette</span>
