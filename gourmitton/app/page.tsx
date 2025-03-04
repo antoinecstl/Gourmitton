@@ -78,9 +78,11 @@ export default async function Home() {
           <Link href={`/`}>
             <h1 className="text-3xl font-bold text-amber-200 drop-shadow-lg cursor-pointer">Gourmitton</h1>
           </Link>
+          <Link href={`/login`}>
             <button className="bg-white/10 hover:bg-white/30 text-white px-4 py-2 rounded-xl backdrop-blur-xs border border-white/20 transition-all">
-            Connexion
-          </button>
+              Connexion
+            </button>
+          </Link>
         </div>
         
         <div className="z-10 text-center text-white px-4 max-w-4xl mx-auto">
