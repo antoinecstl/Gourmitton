@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import RecipeCard from "@/app/components/RecipeCard";
+
 // Définition du type de la recette
 interface Recipe {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image_url: string;
@@ -12,9 +14,17 @@ interface Recipe {
   when_to_eat: string;
   ingredients: string[];
   instructions: string;
-  calories?: number;
-  servings?: number;
-  created_at?: string;
+  calories: number;
+  servings: number;
+  created_at: string;
+  total_time: number;
+  category: string;
+  cost: number;
+  created_by: string;
+  difficulty: string;
+  is_featured: boolean;
+  disclaimer: string;
+  published: boolean;
 }
 
 // Spécifier les types des paramètres
@@ -58,6 +68,13 @@ export default async function RecipePage({ params }: RecipePageProps) {
   
   // Récupérer les données de la recette
   const recipe: Recipe = await res.json();
+
+  const relatedRecipes = await fetch(`https://gourmet.cours.quimerch.com/recipes?limit=3`, {
+    headers: {
+      Accept: 'application/json',
+    },
+    cache: 'no-store'
+  }).then(res => res.json());
 
   return (
     <div className="min-h-screen bg-amber-50">
@@ -210,6 +227,21 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 })}
               </div>
             )}
+
+            {/* Recettes similaires */}
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold text-amber-800 mb-8 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 mr-2 text-amber-600">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                Recettes similaires
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedRecipes.slice(0, 3).map((recipe: Recipe) => (
+                  <RecipeCard key={recipe.id} recipe={recipe} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
