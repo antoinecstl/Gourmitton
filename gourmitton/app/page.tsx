@@ -1,3 +1,4 @@
+import Link from "next/link";
 import MostLikedRecipe from "./components/MostLikedRecipe";
 import RecipeSection from "./components/RecipeSection";
 import Image from "next/image";
@@ -74,8 +75,10 @@ export default async function Home() {
         
         {/* Added header with title and login button */}
         <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
-          <h1 className="text-3xl font-bold text-amber-200 drop-shadow-lg">Gourmitton</h1>
-          <button className="bg-white/10 hover:bg-white/30 text-white px-4 py-2 rounded-xl backdrop-blur-xs border border-white/20 transition-all">
+          <Link href={`/`}>
+            <h1 className="text-3xl font-bold text-amber-200 drop-shadow-lg cursor-pointer">Gourmitton</h1>
+          </Link>
+            <button className="bg-white/10 hover:bg-white/30 text-white px-4 py-2 rounded-xl backdrop-blur-xs border border-white/20 transition-all">
             Connexion
           </button>
         </div>
