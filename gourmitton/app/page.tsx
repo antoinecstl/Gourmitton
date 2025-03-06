@@ -129,7 +129,6 @@ export default async function Home() {
           description: r.description,
           prep_time: r.prep_time,
           cook_time: r.cook_time,
-          total_time: r.prep_time + r.cook_time,
           when_to_eat: r.when_to_eat,
           calories: r.calories,
           servings: r.servings,

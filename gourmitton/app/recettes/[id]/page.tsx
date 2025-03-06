@@ -118,8 +118,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
             )}
             <div className="flex items-center gap-4 mb-2">
               <h1 className="text-3xl md:text-5xl font-bold">{recipe.name}</h1>
-              <LikeButton />
-              <span className="text-md text-amber-200">12</span>
+              <LikeButton recipeId={recipe.id} />
             </div>
             <p className="text-lg text-amber-100 max-w-2xl mb-4">{recipe.description}</p>
             

@@ -11,7 +11,6 @@ interface Recipe {
   description: string;
   prep_time: number;
   cook_time: number;
-  total_time: number;
   when_to_eat: string;
   calories: number;
   category: string;

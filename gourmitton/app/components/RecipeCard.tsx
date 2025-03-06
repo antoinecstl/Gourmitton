@@ -8,7 +8,6 @@ interface Recipe {
   description: string;
   prep_time: number;
   cook_time: number;
-  total_time: number;
   when_to_eat: string;
   calories: number;
   category: string;
@@ -28,7 +27,7 @@ interface RecipeCardProps {
 export default function RecipeCard({ recipe }: RecipeCardProps) {
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-amber-100 group">
+    <Link href={`/recettes/${recipe.id}`} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-amber-100 group">
       <div className="relative h-56 overflow-hidden">
         {recipe.image_url ? (
           <img 
@@ -57,7 +56,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span title="Temps total">
-              {recipe.total_time} min
+              {recipe.cook_time + recipe.prep_time} min
             </span>
           </div>
           
@@ -74,16 +73,13 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           )}
         </div>
         
-        <Link 
-          href={`/recettes/${recipe.id}`}
-          className="w-full text-center py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all flex items-center justify-center gap-2 group-hover:shadow-md"
-        >
+        <div className="w-full text-center py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
           <span>Voir la recette</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 transition-transform transform group-hover:translate-x-1">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
