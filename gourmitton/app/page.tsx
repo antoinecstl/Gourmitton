@@ -1,7 +1,7 @@
-import Link from "next/link";
 import MostLikedRecipe from "./components/MostLikedRecipe";
 import RecipeSection from "./components/RecipeSection";
 import Image from "next/image";
+import AuthHeader from "./components/AuthHeader";
 
 //Définition du type de la recette
 interface Recipe {
@@ -24,7 +24,9 @@ interface Recipe {
   published: boolean;
 }
 
+
 export default async function Home() {
+
   const res = await fetch('https://gourmet.cours.quimerch.com/recipes', {
     headers: {
       Accept: 'application/json',
@@ -74,16 +76,7 @@ export default async function Home() {
         </div>
         
         {/*  header with title and login button */}
-        <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
-          <Link href={`/`}>
-            <h1 className="text-3xl font-bold text-amber-200 drop-shadow-lg cursor-pointer">Gourmitton</h1>
-          </Link>
-          <Link href={`/login`}>
-            <button className="bg-white/10 hover:bg-white/30 text-white px-4 py-2 rounded-xl backdrop-blur-xs border border-white/20 transition-all">
-              Connexion
-            </button>
-          </Link>
-        </div>
+        <AuthHeader />
         
         <div className="z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-md animate-fade-in">
