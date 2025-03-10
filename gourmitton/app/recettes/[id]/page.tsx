@@ -1,39 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import LikeButton from "@/app/components/LikeButton";
-
 import RecipeCard from "@/app/components/RecipeCard";
-
-// Définition du type de la recette
-interface Recipe {
-  id: string;
-  name: string;
-  description: string;
-  image_url: string;
-  prep_time: number;
-  cook_time: number;
-  when_to_eat: string;
-  ingredients: string[];
-  instructions: string;
-  calories: number;
-  servings: number;
-  created_at: string;
-  total_time: number;
-  category: string;
-  cost: number;
-  created_by: string;
-  difficulty: string;
-  is_featured: boolean;
-  disclaimer: string;
-  published: boolean;
-}
-
-// Spécifier les types des paramètres
-interface RecipePageProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
+import { Recipe, RecipePageProps } from "@/app/types/Recipe";
 
 export default async function RecipePage({ params }: RecipePageProps) {
   // Récupérer l'ID depuis les paramètres d'URL en utilisant await

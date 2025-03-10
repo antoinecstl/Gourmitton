@@ -1,28 +1,6 @@
 
 import Link from "next/link";
-
-interface Recipe {
-  id: string;
-  image_url?: string;
-  name: string;
-  description: string;
-  prep_time: number;
-  cook_time: number;
-  when_to_eat: string;
-  calories: number;
-  category: string;
-  cost: number;
-  created_at: string;
-  created_by: string;
-  disclaimer: string;
-  instructions: string;
-  published: boolean;
-  servings: number;
-}
-
-interface RecipeCardProps {
-  recipe: Recipe;
-}
+import { RecipeCardProps } from "@/app/types/Recipe";
 
 export default function RecipeCard({ recipe }: RecipeCardProps) {
 

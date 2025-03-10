@@ -3,30 +3,7 @@
 import { useState } from 'react';
 import RecipeCard from './RecipeCard';
 import CategoryFilter from './CategoryFilter';
-
-interface Recipe {
-  id: string;
-  image_url?: string;
-  name: string;
-  description: string;
-  prep_time: number;
-  cook_time: number;
-  when_to_eat: string;
-  calories: number;
-  category: string;
-  cost: number;
-  created_at: string;
-  created_by: string;
-  disclaimer: string;
-  instructions: string;
-  published: boolean;
-  servings: number;
-}
-
-interface RecipeSectionProps {
-  recipes: Recipe[];
-  categories: string[];
-}
+import { RecipeSectionProps } from '@/app/types/Recipe';
 
 export default function RecipeSection({ recipes, categories }: RecipeSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);

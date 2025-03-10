@@ -1,29 +1,8 @@
-import MostLikedRecipe from "./components/MostLikedRecipe";
-import RecipeSection from "./components/RecipeSection";
 import Image from "next/image";
-import AuthHeader from "./components/AuthHeader";
-
-//Définition du type de la recette
-interface Recipe {
-  id: string;
-  name: string;
-  description: string;
-  image_url: string;
-  prep_time: number;
-  cook_time: number;
-  when_to_eat: string;
-  ingredients: string[];
-  instructions: string;
-  calories: number;
-  servings: number;
-  created_at: string;
-  category: string;
-  cost: number;
-  created_by: string;
-  disclaimer: string;
-  published: boolean;
-}
-
+import MostLikedRecipe from "@/app/components/MostLikedRecipe";
+import RecipeSection from "@/app/components/RecipeSection";
+import AuthHeader from "@/app/components/AuthHeader";
+import { Recipe } from "@/app/types/Recipe";
 
 export default async function Home() {
 
@@ -116,23 +95,7 @@ export default async function Home() {
       {/* Main Recipes Section with Filters - Now using the RecipeSection component */}
       <section id="all-recipes">
         <RecipeSection recipes={recipes.map((r: Recipe) => ({
-          id: r.id,
-          image_url: r.image_url,
-          name: r.name,
-          description: r.description,
-          prep_time: r.prep_time,
-          cook_time: r.cook_time,
-          when_to_eat: r.when_to_eat,
-          calories: r.calories,
-          servings: r.servings,
-          created_at: r.created_at,
-          ingredients: r.ingredients,
-          instructions: r.instructions,
-          category: r.category,
-          cost: r.cost,
-          created_by: r.created_by,
-          disclaimer: r.disclaimer,
-          published: r.published,
+          ...r
         }))} categories={categories} />
       </section>
         
