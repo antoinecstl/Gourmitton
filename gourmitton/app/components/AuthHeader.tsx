@@ -33,6 +33,8 @@ export default function AuthHeader() {
                     if (res.ok) {
                         const userData = await res.json();
                         setUsername(userData.username);
+                        localStorage.setItem('username', userData.username);
+                        setIsLogged(true);
                     }
                     else {
                         localStorage.removeItem('jwt_token');
@@ -48,6 +50,7 @@ export default function AuthHeader() {
 
     function logout() {
         localStorage.removeItem('jwt_token');
+        localStorage.removeItem('username');
         setUsername(null);
         window.location.reload();
     }

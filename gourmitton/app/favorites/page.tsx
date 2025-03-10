@@ -4,26 +4,6 @@ import { Recipe,RecipeCardProps } from "@/app/types/Recipe";
 import RecipeCard from "@/app/components/RecipeCard";
 import Link from "next/link";
 
-export function handleRemoveFavorite(id:string) {
-    fetch(`https://gourmet.cours.quimerch.com/favorites/${id}`, {
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
-        },
-        credentials: 'include' as RequestCredentials
-    })
-    .then((res) => {
-        if (res.ok) {
-            window.location.reload();
-        }
-    })
-    .catch((err) => {
-        console.error('Error removing favorite:', err);
-    });
-}
-
 export default function FavoritesPage() {
     const [loading, setLoading] = useState(true);
     const [favoritesCardProps, setFavoritesCardProps] = useState<RecipeCardProps[]>([]);
@@ -36,7 +16,6 @@ export default function FavoritesPage() {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
                     },
                     credentials: 'include' as RequestCredentials
@@ -44,7 +23,6 @@ export default function FavoritesPage() {
 
                 if (res.ok) {
                     const data = await res.json();
-                    console.log(data);
                     setFavoritesCardProps(data);
                     const recipeData = data.map((favoriteCardProp: RecipeCardProps) => favoriteCardProp.recipe);
                     setFavorites(recipeData);
