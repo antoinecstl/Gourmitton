@@ -54,7 +54,7 @@ export default function Login() {
                     <form className="mt-8" onSubmit={handleSubmit}>
                         <div className="mb-5">
                             <label className="block text-amber-700 text-sm font-medium mb-2" htmlFor="username">
-                                Nom d'utilisateur
+                                Nom d&apos;utilisateur
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

@@ -10,7 +10,7 @@ class CustomEventSource {
   private url: string;
   private headers: HeadersInit;
   private abortController: AbortController | null = null;
-  private listeners: Record<string, ((event: any) => void)[]> = {};
+  private listeners: Record<string, ((event: unknown) => void)[]> = {};
   private isConnected: boolean = false;
   private retryCount: number = 0;
   private maxRetries: number = 3;
@@ -23,7 +23,7 @@ class CustomEventSource {
   }
 
   // Add an event listener
-  addEventListener(eventType: string, callback: (event: any) => void) {
+  addEventListener(eventType: string, callback: (event: unknown) => void) {
     if (!this.listeners[eventType]) {
       this.listeners[eventType] = [];
     }
@@ -151,7 +151,7 @@ class CustomEventSource {
   }
   
   // Handle errors with proper logging and reconnection
-  private handleError(error: any) {
+  private handleError(error: Error) {
     // Only log non-abort errors or when not intentionally closed
     if (!(error.name === 'AbortError' && this.intentionalClose)) {
       console.error("SSE connection error:", error);
@@ -224,10 +224,11 @@ export default function LikeButton({ recipeId }: LikeButtonProps) {
     eventSourceRef.current = eventSource;
     
     // Listen for count events
-    eventSource.addEventListener('count', (event) => {
+    eventSource.addEventListener('count', (event: unknown) => {
       try {
         if (mountedRef.current) {
-          const count = parseInt(event.data, 10);
+          const eventData = event as { data: string };
+          const count = parseInt(eventData.data, 10);
           if (!isNaN(count)) {
             setLikeCount(count);
           }
