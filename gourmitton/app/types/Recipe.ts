@@ -29,6 +29,7 @@ export interface RecipePageProps {
 
 export interface RecipeCardProps {
     recipe: Recipe;
+    deleteButton: boolean;
 }
 
 export interface RecipeSectionProps {

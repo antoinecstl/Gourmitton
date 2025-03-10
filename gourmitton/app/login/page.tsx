@@ -63,7 +63,7 @@ export default function Login() {
                                     </svg>
                                 </div>
                                 <input 
-                                    className="w-full pl-10 px-4 py-3 border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-gray-300 transition duration-200 bg-amber-50/50"
+                                    className={`w-full pl-10 px-4 py-3 border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-gray-300 transition duration-200 bg-amber-50/50 text-gray-800`}
                                     type="text" 
                                     id="username" 
                                     placeholder="Entrez votre nom d'utilisateur"
@@ -85,7 +85,7 @@ export default function Login() {
                                     </svg>
                                 </div>
                                 <input 
-                                    className="w-full pl-10 px-4 py-3 border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-gray-300 transition duration-200 bg-amber-50/50"
+                                    className="w-full pl-10 px-4 py-3 border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-gray-300 transition duration-200 bg-amber-50/50 text-gray-800"
                                     type="password" 
                                     id="password" 
                                     placeholder="Entrez votre mot de passe"
