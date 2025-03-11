@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react";
+import { RecipeFormProps } from "../types/Recipe";
 
 interface LikeButtonProps {
   recipeId: string;
@@ -204,7 +205,7 @@ class CustomEventSource {
 
 export default function LikeButton({ recipeId }: LikeButtonProps) {
   const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
+  const [likeCount, setLikeCount] = useState(-1);
   const eventSourceRef = useRef<CustomEventSource | null>(null);
   const mountedRef = useRef(true);
   
@@ -240,7 +241,31 @@ export default function LikeButton({ recipeId }: LikeButtonProps) {
     
     // Connect to the SSE endpoint
     eventSource.connect();
-    
+
+    // Fetch the favorites recipe to find if the heart should be filled or not
+    async function fetchFavorites() {
+      try {
+        const res = await fetch(`https://gourmet.cours.quimerch.com/favorites`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
+          },
+          credentials: 'include' as RequestCredentials
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const favorites = data.map((recipe: RecipeFormProps) => recipe.recipe.id);
+          setIsLiked(favorites.includes(recipeId));
+
+        }
+      } catch (err) {
+        console.error('Error fetching favorites:', err);
+      }
+    }
+    fetchFavorites();
+
     // Clean up on unmount
     return () => {
       mountedRef.current = false;
@@ -335,7 +360,9 @@ export default function LikeButton({ recipeId }: LikeButtonProps) {
           </svg>
         )}
       </button>
-      <span className="text-lg text-white">{likeCount}</span>
+      { likeCount != -1 ? (
+        <span className="text-lg text-white">{likeCount}</span>
+      ) : null }
     </div>
   );
 }

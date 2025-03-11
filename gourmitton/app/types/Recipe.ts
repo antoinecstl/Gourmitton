@@ -36,3 +36,7 @@ export interface RecipeSectionProps {
   recipes: Recipe[];
   categories: string[];
 }
+
+export interface RecipeFormProps {
+    recipe: Recipe;
+}
