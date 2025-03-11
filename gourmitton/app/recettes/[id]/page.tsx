@@ -49,7 +49,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
   return (
     <div className="min-h-screen bg-amber-50">
       {/* En-tête avec image de couverture */}
-      <div className="relative h-[40vh] md:h-[50vh] bg-amber-800">
+      <div className="relative h-[40vh] md:h-[50vh] min-h-65 bg-amber-800">
         {recipe.image_url ? (
           <Image 
             src={recipe.image_url} 
@@ -211,7 +211,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedRecipes.slice(0, 3).map((recipe: Recipe) => (
-                  <RecipeCard key={recipe.id} recipe={recipe} />
+                  <RecipeCard key={recipe.id} recipe={recipe} deleteButton={false}/>
                 ))}
               </div>
             </div>

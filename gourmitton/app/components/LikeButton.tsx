@@ -214,7 +214,7 @@ export default function LikeButton({ recipeId }: LikeButtonProps) {
     
     // Create our custom SSE client with proper headers
     const eventSource = new CustomEventSource(
-      `https://gourmet.cours.quimerch.com/recipes/${recipeId}/stars/fake`,
+      `https://gourmet.cours.quimerch.com/recipes/${recipeId}/stars`,
       {
         'Accept': 'application/json, application/xml, text/event-stream',
       }
