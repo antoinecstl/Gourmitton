@@ -251,10 +251,57 @@ export default function LikeButton({ recipeId }: LikeButtonProps) {
     };
   }, [recipeId]);
   
+
+  async function handleLike() {
+    const username = localStorage.getItem('username');
+    const recipeID = recipeId;
+    if (isLiked) {
+      try {
+        const del = await fetch(`https://gourmet.cours.quimerch.com/users/${username}/favorites?recipeID=${recipeID}`, {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json, application/xml',
+            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
+          },
+          credentials: 'include' as RequestCredentials,
+        });
+  
+        if (del.ok) {
+          const res = await del.json();
+          console.log(res);
+          setIsLiked(false);
+        }
+      } catch (err) {
+        console.error('Error removing favorite:', err);
+      }
+    }
+    else {
+      try {
+        const res = await fetch(`https://gourmet.cours.quimerch.com/users/${username}/favorites?recipeID=${recipeID}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json, application/xml',
+            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
+          },
+          body: undefined,
+          credentials: 'include' as RequestCredentials,
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          console.log(data);
+          setIsLiked(true);
+        }
+      } catch (err) {
+        console.error('Error liking recipe:', err);
+      } 
+    }
+  };
+
   return (
     <div className="flex items-center gap-1">
       <button 
-        onClick={() => setIsLiked(!isLiked)}
+        onClick={() => handleLike()}
         className="transition-transform duration-200 transform hover:scale-110 active:scale-95 focus:outline-none"
         aria-label={isLiked ? "Retirer des favoris" : "Ajouter aux favoris"}
       >

@@ -4,25 +4,23 @@ import { RecipeCardProps } from "@/app/types/Recipe";
 
 export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
 
-  async function handleRemoveFavorite(id: string) {
+  async function handleRemoveFavorite(recipeID: string) {
     const username = localStorage.getItem('username');
-    try {
-      const del = await fetch(`https://gourmet.cours.quimerch.com/users/${username}/favorites?recipeID=${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Accept': 'application/json, application/xml',
-          'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
-        },
-        credentials: 'include' as RequestCredentials,
-      });
 
-      if (del.ok) {
-        const res = await del.json();
-        console.log(res);
+    const url = `https://gourmet.cours.quimerch.com/users/${username}/favorites?recipeID=${recipeID}`;
+    const options = {method: 'DELETE', headers: { ContentType: 'application/x-www-form-urlencoded', Accept: '*/*', Authorization: 'Bearer ' + localStorage.getItem('jwt_token')}};
+
+    try {
+      const response = await fetch(url, options);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
         window.location.reload();
       }
-    } catch (err) {
-      console.error('Error removing favorite:', err);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error removing favorite:', error);
     }
   }
 
@@ -30,6 +28,7 @@ export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-amber-100 group">
       <div className="relative h-56 overflow-hidden">
         {recipe.image_url ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={recipe.image_url}
             alt={recipe.name}
