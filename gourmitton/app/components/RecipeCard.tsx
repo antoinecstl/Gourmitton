@@ -27,6 +27,8 @@ export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
           <Image
             src={recipe.image_url}
             alt={recipe.name}
+            width={500}
+            height={500}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
