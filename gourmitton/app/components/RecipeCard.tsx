@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 import { RecipeCardProps } from "@/app/types/Recipe";
 
 export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
@@ -23,8 +24,7 @@ export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-amber-100 group">
       <div className="relative h-56 overflow-hidden">
         {recipe.image_url ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={recipe.image_url}
             alt={recipe.name}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -66,7 +66,7 @@ export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
             </div>
           )}
         </div>
-        <Link href={`/recettes/${recipe.id}`}>
+        <Link href={`/recettes/${recipe.id}`} prefetch={false}>
           <div className="w-full text-center py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all flex direction-column items-center justify-center gap-2 group-hover:shadow-md">
             <span>Voir la recette</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 transition-transform transform group-hover:translate-x-1">

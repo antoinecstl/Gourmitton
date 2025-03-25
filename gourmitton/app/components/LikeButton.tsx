@@ -370,7 +370,7 @@ export default function LikeButton({ recipeId }: LikeButtonProps) {
       </button> 
 
       ) : 
-      <Link href="/login">
+      <Link href="/login" prefetch={false}>
         <button className="transition-transform duration-200 transform hover:scale-110 active:scale-95 focus:outline-none"
                 aria-label="Se connecter pour ajouter aux favoris">
           <svg 

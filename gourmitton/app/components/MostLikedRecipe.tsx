@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface RecipeProps {
   recipe: {
@@ -19,7 +20,7 @@ export default function MostLikedRecipe({ recipe }: RecipeProps) {
     <div className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
       <div className="md:w-1/2 h-80 md:h-98 relative">
         {recipe.image_url ? (
-          <img 
+          <Image 
             src={recipe.image_url} 
             alt={recipe.name} 
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -52,7 +53,7 @@ export default function MostLikedRecipe({ recipe }: RecipeProps) {
             <span className="text-sm text-gray-600">Cuisson: {recipe.cook_time} min</span>
           </div>
         </div>
-        <Link href={`/recettes/${recipe.id}`} className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full mt-auto self-start transition-colors font-medium">
+        <Link href={`/recettes/${recipe.id}`} prefetch={false} className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full mt-auto self-start transition-colors font-medium">
           Voir la recette
         </Link>
       </div>
