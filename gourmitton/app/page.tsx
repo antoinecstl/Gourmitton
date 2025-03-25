@@ -51,17 +51,17 @@ export default async function Home() {
   const categories: string[] = [...new Set(recipes.map((r: Recipe) => r.when_to_eat as string))];
 
   return (
-    <div className="min-h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
+    <div className="min-h-screen min-w-fit flex flex-col font-[family-name:var(--font-geist-sans)]">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-amber-600 to-amber-800">
         <div className="absolute inset-0 overflow-hidden">
           <Image 
-            src="/cuisine_squared.webp" 
+            src="/cuisine_squared_cropped.webp" 
             alt="Meal background"
             className="absolute inset-0 h-screen object-cover opacity-50 scale-105 animate-slow-zoom" 
             priority
-            width={1920}
-            height={1080}
+            width={1760}
+            height={894}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-amber-800/70"></div>
         </div>
