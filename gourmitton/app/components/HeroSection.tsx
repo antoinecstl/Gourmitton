@@ -14,8 +14,7 @@ export default function HeroSection() {
                     alt="Meal background"
                     className="absolute inset-0 h-screen object-cover opacity-50 scale-105 animate-slow-zoom"
                     priority
-                    width={1760}
-                    height={894}
+                    fill
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-amber-800/70"></div>
             </div>
