@@ -46,10 +46,11 @@ export default async function Home() {
         <div className="absolute inset-0 overflow-hidden">
           <Image 
             src="/cuisine_squared.webp" 
-            alt="Meal background" 
-            fill
-            className="absolute inset-0 object-cover opacity-50 scale-105 animate-slow-zoom" 
+            alt="Meal background"
+            className="absolute inset-0 h-screen object-cover opacity-50 scale-105 animate-slow-zoom" 
             priority
+            width={1920}
+            height={1080}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-amber-800/70"></div>
         </div>
@@ -61,7 +62,7 @@ export default async function Home() {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-md animate-fade-in">
             Découvrez des Recettes <span className="text-amber-200">Délicieuses</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl mb-10 mx-auto">
             Des plats savoureux et faciles à préparer pour toutes les occasions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
