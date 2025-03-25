@@ -14,7 +14,6 @@ const nextConfig: NextConfig = {
         hostname: '*',
       }
     ],
-    domains: ['gourmet.cours.quimerch.com'],
     formats : ['image/avif', 'image/webp'],
   },
 };
