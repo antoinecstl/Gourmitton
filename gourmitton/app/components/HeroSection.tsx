@@ -30,7 +30,7 @@ export default function HeroSection() {
                 <p className="text-xl md:text-2xl mb-10 mx-auto">
                     Des plats savoureux et faciles à préparer pour toutes les occasions
                 </p>
-                <div className="flex flex-col sm:flex-row gap-10 justify-center">
+                <div className="flex flex-col sm:flex-row gap-4  justify-center">
                     <a href="#all-recipes">
                         <button className="bg-white text-amber-800 hover:bg-amber-100 font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
                             Explorer nos recettes
