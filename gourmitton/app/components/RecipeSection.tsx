@@ -4,6 +4,7 @@ import { useState } from 'react';
 import RecipeCard from './RecipeCard';
 import CategoryFilter from './CategoryFilter';
 import { RecipeSectionProps } from '@/app/types/Recipe';
+import { LazyLoadedSection } from './LazyLoad';
 
 export default function RecipeSection({ recipes, categories }: RecipeSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -24,12 +25,13 @@ export default function RecipeSection({ recipes, categories }: RecipeSectionProp
             onCategoryChange={setSelectedCategory}
           />
         </div>
-        
-        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredRecipes.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} deleteButton={false} />
-          ))}
-        </div>
+        <LazyLoadedSection>
+          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredRecipes.map((recipe) => (
+              <RecipeCard key={recipe.id} recipe={recipe} deleteButton={false} />
+            ))}
+          </div>
+        </LazyLoadedSection>
       </div>
     </section>
   );
