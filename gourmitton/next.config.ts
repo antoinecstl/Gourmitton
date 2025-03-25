@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -13,6 +14,8 @@ const nextConfig: NextConfig = {
         hostname: '*',
       }
     ],
+    domains: ['gourmet.cours.quimerch.com'],
+    formats : ['image/avif', 'image/webp'],
   },
 };
 

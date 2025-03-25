@@ -1,8 +1,19 @@
 import Image from "next/image";
-import MostLikedRecipe from "@/app/components/MostLikedRecipe";
-import RecipeSection from "@/app/components/RecipeSection";
-import AuthHeader from "@/app/components/AuthHeader";
+import dynamic from "next/dynamic";
 import { Recipe } from "@/app/types/Recipe";
+import { LazyLoadedSection } from "./components/LazyLoad";
+
+const MostLikedRecipe = dynamic(() => import('@/app/components/MostLikedRecipe'), {
+  loading: () => <div className="animate-pulse h-64 bg-amber-100 rounded-xl flex items-center justify-center"></div>,
+});
+
+const RecipeSection = dynamic(() => import('@/app/components/RecipeSection'), {
+  loading: () => <div className="animate-pulse h-64 bg-amber-100 rounded-xl flex items-center justify-center"></div>,
+});
+
+const AuthHeader = dynamic(() => import('@/app/components/AuthHeader'), {
+  loading: () => <div className="animate-pulse h-64 bg-amber-100 rounded-xl flex items-center justify-center"></div>,
+});
 
 export default async function Home() {
 
@@ -83,21 +94,25 @@ export default async function Home() {
       </section>
       
       {/* Recipe of the Day */}
-      <section id="trending-recipe" className="bg-amber-50 py-12">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-amber-800 mb-8 text-center flex items-center justify-center gap-2">
-            <span className="text-amber-600">✨</span> La Recette Tendance <span className="text-amber-600">✨</span>
-          </h2>
-          <MostLikedRecipe recipe={TendanceRecipe} />
-        </div>
-      </section>
+      <LazyLoadedSection>
+        <section id="trending-recipe" className="bg-amber-50 py-12">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-amber-800 mb-8 text-center flex items-center justify-center gap-2">
+              <span className="text-amber-600">✨</span> La Recette Tendance <span className="text-amber-600">✨</span>
+            </h2>
+            <MostLikedRecipe recipe={TendanceRecipe} />
+          </div>
+        </section>
+      </LazyLoadedSection>
       
       {/* Main Recipes Section with Filters - Now using the RecipeSection component */}
-      <section id="all-recipes">
-        <RecipeSection recipes={recipes.map((r: Recipe) => ({
-          ...r
-        }))} categories={categories} />
-      </section>
+      <LazyLoadedSection>
+        <section id="all-recipes">
+          <RecipeSection recipes={recipes.map((r: Recipe) => ({
+            ...r
+          }))} categories={categories} />
+        </section>
+      </LazyLoadedSection>
         
       {/* Newsletter Section with improved visuals */}
       <section className="bg-amber-600 py-20 relative overflow-hidden">
