@@ -62,7 +62,7 @@ export default function FavoritesPage() {
                 ) : (
                     <div className="text-center py-10 max-w-lg mx-auto bg-white p-8 rounded-xl shadow-md">
                         <p className="text-gray-600 mb-6">Vous n&apos;avez pas encore de recettes favorites.</p>
-                        <Link href="/" className="inline-block px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all">
+                        <Link href="/#all-recipes" className="inline-block px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all">
                             Découvrir des recettes
                         </Link>
                     </div>

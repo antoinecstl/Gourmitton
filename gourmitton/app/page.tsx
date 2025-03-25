@@ -45,7 +45,7 @@ export default async function Home() {
       <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-amber-600 to-amber-800">
         <div className="absolute inset-0 overflow-hidden">
           <Image 
-            src="/meal.jpg" 
+            src="/cuisine_squared.webp" 
             alt="Meal background" 
             fill
             className="absolute inset-0 object-cover opacity-50 scale-105 animate-slow-zoom" 

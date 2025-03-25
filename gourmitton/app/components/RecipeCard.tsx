@@ -13,12 +13,7 @@ export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
     try {
       const response = await fetch(url, options);
       if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        window.location.reload();
       }
-      const data = await response.json();
-      console.log(data);
     } catch (error) {
       console.error('Error removing favorite:', error);
     }
