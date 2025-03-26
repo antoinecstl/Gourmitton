@@ -31,7 +31,7 @@ export default function HeroSection() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4  justify-center">
                     <a href="#all-recipes">
-                        <button className="bg-white text-amber-800 hover:bg-amber-100 font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                        <button className="border-2 border-white bg-white text-amber-800 hover:bg-amber-100 font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
                             Explorer nos recettes
                         </button>
                     </a>
