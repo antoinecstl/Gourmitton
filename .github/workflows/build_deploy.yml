@@ -8,6 +8,11 @@ on:
     branches:
       - main
 
+env:
+  DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -40,8 +45,7 @@ jobs:
         id: get-latest-version
         run: |
           sudo apt-get install -y jq
-          LATEST_TAG=$(curl -s -H \
-            https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_REPOSITORY }}/tags | \
+          LATEST_TAG=$(curl -s https://hub.docker.com/v2/repositories/$DOCKER_REPOSITORY/tags | \
             jq -r '.results | map(.name | select(test("^v[0-9]+$"))) | sort | last')
           echo "LATEST_TAG=$LATEST_TAG"
           if [ -z "$LATEST_TAG" ]; then
@@ -56,14 +60,14 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
 
       # Build and push Docker image
       - name: Build and push Docker image
         run: |
           cd gourmitton
-          docker build -t ${{ secrets.DOCKER_REPOSITORY }}:latest .
-          docker tag ${{ secrets.DOCKER_REPOSITORY }}:latest ${{ secrets.DOCKER_REPOSITORY }}:$NEW_TAG
-          docker push ${{ secrets.DOCKER_REPOSITORY }}:latest
-          docker push ${{ secrets.DOCKER_REPOSITORY }}:$(date +%Y%m%d%H%M%S)
+          docker build -t $DOCKER_REPOSITORY:latest .
+          docker tag $DOCKER_REPOSITORY:latest $DOCKER_REPOSITORY:$NEW_TAG
+          docker push $DOCKER_REPOSITORY:latest
+          docker push $DOCKER_REPOSITORY:$NEW_TAG
