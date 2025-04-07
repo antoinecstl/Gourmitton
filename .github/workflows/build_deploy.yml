@@ -10,10 +10,6 @@ on:
 
 jobs:
   build-deploy:
-    env:
-      DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +25,10 @@ jobs:
 
       # Check if environment variables are set
       - name: Debug environment variables
+        env:
+          DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY"
           echo "DOCKER_USERNAME=$DOCKER_USERNAME"
@@ -49,6 +49,8 @@ jobs:
       # Get the latest version from Docker Hub
       - name: Get latest Docker image version
         id: get-latest-version
+        env:
+          DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
         run: |
           sudo apt-get install -y jq
           LATEST_TAG=$(curl -s https://hub.docker.com/v2/repositories/$DOCKER_REPOSITORY/tags | \
@@ -65,12 +67,18 @@ jobs:
       # Log in to Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         with:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
 
       # Build and push Docker image
       - name: Build and push Docker image
+        env:
+          DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+          NEW_TAG: ${{ env.NEW_TAG }}
         run: |
           cd gourmitton
           docker build -t $DOCKER_REPOSITORY:latest .
