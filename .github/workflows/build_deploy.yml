@@ -8,13 +8,12 @@ on:
     branches:
       - main
 
-env:
-  DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
-  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
 jobs:
   build-deploy:
+    env:
+      DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +27,7 @@ jobs:
         with:
           node-version: '20'
 
+      # Check if environment variables are set
       - name: Debug environment variables
         run: |
           echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY"
