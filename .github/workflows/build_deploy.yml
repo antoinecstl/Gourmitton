@@ -30,18 +30,21 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          if [ -z "${{ secrets.DOCKER_REPOSITORY }}" ]; then
+          if [ -z "$DOCKER_REPOSITORY" ]; then
             echo "DOCKER_REPOSITORY is not set"
+            exit 1
           else
             echo "DOCKER_REPOSITORY is set"
           fi
-          if [ -z "${{ secrets.DOCKER_USERNAME }}" ]; then
+          if [ -z "$DOCKER_USERNAME" ]; then
             echo "DOCKER_USERNAME is not set"
+            exit 1
           else
             echo "DOCKER_USERNAME is set"
           fi
-          if [ -z "${{ secrets.DOCKER_PASSWORD }}" ]; then
+          if [ -z "$DOCKER_PASSWORD" ]; then
             echo "DOCKER_PASSWORD is not set"
+            exit 1
           else
             echo "DOCKER_PASSWORD is set"
           fi
@@ -69,7 +72,7 @@ jobs:
             jq -r '.results | map(.name | select(test("^v[0-9]+$"))) | sort | last')
           echo "LATEST_TAG=$LATEST_TAG"
           if [ -z "$LATEST_TAG" ]; then
-            NEW_TAG="v1"
+            exit 1
           else
             NEW_TAG="v$(( ${LATEST_TAG#v} + 1 ))"
           fi
