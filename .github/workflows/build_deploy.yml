@@ -28,6 +28,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Debug environment variables
+        run: |
+          echo "DOCKER_REPOSITORY=$DOCKER_REPOSITORY"
+          echo "DOCKER_USERNAME=$DOCKER_USERNAME"
+          echo "DOCKER_PASSWORD is set"
+
       # Navigate to the gourmitton folder and install dependencies
       - name: Install dependencies
         run: |
