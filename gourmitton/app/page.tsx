@@ -53,25 +53,6 @@ export default async function Home() {
           <RecipeSection recipes={recipes} categories={categories} />
         </section>
       </LazyLoadedSection>
-
-      {/* Newsletter Section with improved visuals */}
-      <section className="bg-amber-600 py-20 relative overflow-hidden">
-        <div className="container mx-auto px-4 max-w-3xl text-center relative z-10">
-          <span className="inline-block text-3xl mb-4">🍳</span>
-          <h2 className="text-3xl font-bold text-white mb-6">Restez inspiré(e)</h2>
-          <p className="text-lg text-amber-100 mb-8">Inscrivez-vous à notre newsletter pour recevoir de nouvelles recettes chaque semaine</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <input
-              type="email"
-              placeholder="Votre adresse email"
-              className="px-6 py-4 rounded-full text-black flex-grow max-w-md border-2 border-amber-300 bg-white/90 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:bg-white transition-all"
-            />
-            <button className="bg-white text-amber-700 font-bold py-4 px-8 rounded-full hover:bg-amber-100 transition-colors shadow-lg">
-              S&apos;inscrire
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
