@@ -4,4 +4,5 @@ module.exports = {
     },
     testEnvironment: 'jest-environment-jsdom', // Nécessaire pour tester les composants React
     setupFilesAfterEnv: ['@testing-library/jest-dom'], // Ajoute jest-dom pour les assertions supplémentaires
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'], // Extensions de fichiers à traiter
   };

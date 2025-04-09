@@ -14,5 +14,6 @@ module.exports = {
         runtime: 'automatic', // Active le nouveau runtime JSX
       },
     ],
+    '@babel/preset-typescript'
   ],
 };
