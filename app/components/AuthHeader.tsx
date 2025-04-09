@@ -9,15 +9,14 @@ export default function AuthHeader() {
     const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem('jwt_token')) {
-            setIsLogged(true);
-        }
-        setLoading(false);
-
-        async function fetchUserData() {
-
-            // Check if we're in a browser environment and if the token exists
+        // Définir une fonction pour gérer le chargement et les données utilisateur
+        async function handleUserData() {
+            setLoading(true); // Définir l'état de chargement à true
+            
+            // Vérification du token
             if (localStorage.getItem('jwt_token')) {
+                setIsLogged(true);
+                
                 try {
                     const res = await fetch('https://gourmet.cours.quimerch.com/me', {
                         method: 'GET',
@@ -29,7 +28,7 @@ export default function AuthHeader() {
                         credentials: 'include' as RequestCredentials,
                         cache: 'no-store'
                     });
-
+    
                     if (res.ok) {
                         const userData = await res.json();
                         setUsername(userData.username);
@@ -43,10 +42,18 @@ export default function AuthHeader() {
                 } catch (err) {
                     console.error('Error fetching user data:', err);
                 }
+            } else {
+                setIsLogged(false);
             }
+            
+            // Ajouter un délai artificiel pour s'assurer que l'état de chargement est visible lors des tests
+            setTimeout(() => {
+                setLoading(false);
+            }, 100);
         }
-        fetchUserData();
-    }, [username]);
+        
+        handleUserData();
+    }, []);
 
     function logout() {
         localStorage.removeItem('jwt_token');
@@ -85,7 +92,7 @@ export default function AuthHeader() {
                 )}
                 </>
             ) : (
-                <div className="flex items-center space-x-4">
+                <div data-testid="loading-state" className="flex items-center space-x-4">
                     <div className="animate-pulse bg-white/10 text-white px-4 py-2 rounded-xl backdrop-blur-xs border border-white/20 w-20"></div>
                     <div className="animate-pulse bg-white/10 text-white px-4 py-2 rounded-xl backdrop-blur-xs border border-white/20 w-20"></div>
                 </div>

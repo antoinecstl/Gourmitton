@@ -2,7 +2,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const AuthHeader = dynamic(() => import('@/app/components/AuthHeader'), {
-    loading: () => <div className="animate-pulse h-64 bg-amber-100 rounded-xl flex items-center justify-center"></div>,
+    loading: () => <div className="animate-pulse h-64 bg-amber-100 rounded-xl flex items-center justify-center" data-testid="loading-placeholder"></div>,
 });
 
 export default function HeroSection() {
@@ -44,7 +44,7 @@ export default function HeroSection() {
             </div>
 
             {/* Gradient divider */}
-            <div className="absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-amber-50 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-amber-50 to-transparent" data-testid="gradient-divider"></div>
         </section>
     );
 }

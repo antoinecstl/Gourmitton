@@ -30,6 +30,7 @@ export interface RecipePageProps {
 export interface RecipeCardProps {
     recipe: Recipe;
     deleteButton: boolean;
+    onDeleteSuccess?: (recipeId: string) => void;
 }
 
 export interface RecipeSectionProps {

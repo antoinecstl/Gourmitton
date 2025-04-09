@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { RecipeCardProps } from "@/app/types/Recipe";
 
-export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
+// Update your component props to include the callback
+export default function RecipeCard({ recipe, deleteButton, onDeleteSuccess }: RecipeCardProps & { onDeleteSuccess?: (recipeId: string) => void }) {
 
   async function handleRemoveFavorite(recipeID: string) {
     const username = localStorage.getItem('username');
@@ -14,6 +15,10 @@ export default function RecipeCard({ recipe, deleteButton }: RecipeCardProps) {
     try {
       const response = await fetch(url, options);
       if (response.ok) {
+        // Call the callback if provided
+        if (onDeleteSuccess) {
+          onDeleteSuccess(recipeID);
+        }
       }
     } catch (error) {
       console.error('Error removing favorite:', error);
