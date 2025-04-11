@@ -33,26 +33,27 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
-      <HeroSection/>
+      <HeroSection />
 
       {/* Recipe of the Day */}
-      <LazyLoadedSection>
-        <section id="trending-recipe" className="bg-amber-50 py-12">
+      <section id="trending-recipe" className="bg-amber-50 py-12">
+        <LazyLoadedSection>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-amber-800 mb-8 text-center flex items-center justify-center gap-2">
               <span className="text-amber-600">✨</span> La Recette Tendance <span className="text-amber-600">✨</span>
             </h2>
             <MostLikedRecipe recipe={TendanceRecipe} />
           </div>
-        </section>
-      </LazyLoadedSection>
+        </LazyLoadedSection>
+      </section>
 
       {/* Main Recipes Section with Filters - Now using the RecipeSection component */}
-      <LazyLoadedSection>
-        <section id="all-recipes">
+
+      <section id="all-recipes">
+        <LazyLoadedSection>
           <RecipeSection recipes={recipes} categories={categories} />
-        </section>
-      </LazyLoadedSection>
+        </LazyLoadedSection>
+      </section>
     </div>
   );
 }
