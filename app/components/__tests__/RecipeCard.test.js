@@ -22,6 +22,7 @@ Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 jest.mock('next/image', () => {
     const MockedImage = ({ src, alt, width, height, className }) => {
         return (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
                 src={src}
                 alt={alt}

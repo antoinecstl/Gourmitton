@@ -14,6 +14,7 @@ jest.mock('next/image', () => {
             stringifiedProps.height = stringifiedProps.height.toString();
         }
 
+        // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
         return <img {...stringifiedProps} data-testid="recipe-image" />;
     };
     MockedImage.displayName = 'MockedImage';
